@@ -2,6 +2,7 @@
 const { program } = require("commander");
 const { readFileSync } = require("fs");
 const { log } = require("console");
+const { prompt } = require("inquirer");
 
 program.version(
   require("./package.json").version,
@@ -10,12 +11,43 @@ program.version(
 );
 
 program
+  .command("parse")
   .option("-i,--input <file>", "the markdown file to parse")
   .option("-o,--output <file>", "the file to write parsed markdown")
   .description("parse markdown to html")
   .usage("-i <file> -o <file>")
   .action((opts) => {
     require("./lib/parser")(opts);
+  });
+
+program
+  .command("open <file>")
+  .usage("<file>")
+  .description("preview the parsed markdown in server")
+  .action((file) => {
+    require("./lib/preview")(readFileSync(file).toString());
+  });
+
+program
+  .command("watch <file>")
+  .option("-o,--output <file>", "the filename to output changes")
+  .description("watch file and write changes")
+  .usage("<file> -o <outputFile>")
+  .action(async (file, opts) => {
+    const { theme } = await prompt({
+      type: "list",
+      choices: ["light", "dark"],
+      message: "choose theme",
+      name: "theme"
+    });
+    const mode = await prompt({
+      type: "list",
+      choices: ["watch and write", "watch and preview in the browser"],
+      name: "mode"
+    });
+    mode.mode == "watch and preview in the browser"
+      ? require("./lib/watch")(file, opts.output, "watch_browser", theme)
+      : require("./lib/watch")(file, opts.output, "watch_write", theme);
   });
 
 program.parse(process.argv);

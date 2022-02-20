@@ -15,7 +15,8 @@
     "@types/inquirer": "^8.2.0",
     "@types/node": "^17.0.18",
     "@types/node-emoji": "^1.8.1",
-    "@types/prettier": "^2.4.4"
+    "@types/prettier": "^2.4.4",
+    "marked": "^4.0.12"
   },
   "bin": {
     "md-parser": "./index.js"

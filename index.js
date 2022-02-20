@@ -1,53 +1,41 @@
-#!/usr/bin/env node
-const { program } = require("commander");
-const { readFileSync } = require("fs");
-const { log } = require("console");
-const { prompt } = require("inquirer");
+function parse(file, theme) {
+  const { readFileSync } = require("fs");
+  const { parse } = require("marked");
+  const { format } = require("prettier");
+  const { emojify } = require("node-emoji");
+  var markedContent = parse(readFileSync(file).toString());
+  markedContent = emojify(markedContent);
+  var ContentToWriteInFile = `
+       <!DOCTYPE html>
+<html>
 
-program.version(
-  require("./package.json").version,
-  "-v,--version",
-  "show md-parser version"
-);
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${file}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/atom-one-${theme}.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown-${theme}.min.css"> 
+</head>
 
-program
-  .command("parse <file>")
-  .option("-o,--output <file>", "the file to write parsed markdown")
-  .description("parse markdown to html")
-  .usage("-i <file> -o <file>")
-  .action((file, opts) => {
-    var options = Object.assign(opts, { input: file });
-    require("./lib/parser")(options);
+<body class="markdown-body">
+   <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"></script>
+   
+   ${markedContent}
+
+	 <script>
+     hljs.highlightAll()
+	 </script>
+   
+</body>
+
+</html>
+   `;
+  ContentToWriteInFile = format(ContentToWriteInFile, {
+    parser: "html",
+    singleQuote: false,
+    trailingComma: "none"
   });
+  return ContentToWriteInFile;
+}
 
-program
-  .command("open <file>")
-  .usage("<file>")
-  .description("preview the parsed markdown in server")
-  .action((file) => {
-    require("./lib/preview")(readFileSync(file).toString());
-  });
-
-program
-  .command("watch <file>")
-  .option("-o,--output <file>", "the filename to output changes")
-  .description("watch file and write changes")
-  .usage("<file> -o <outputFile>")
-  .action(async (file, opts) => {
-    const { theme } = await prompt({
-      type: "list",
-      choices: ["light", "dark"],
-      message: "choose theme",
-      name: "theme"
-    });
-    const mode = await prompt({
-      type: "list",
-      choices: ["watch and write", "watch and preview in the browser"],
-      name: "mode"
-    });
-    mode.mode == "watch and preview in the browser"
-      ? require("./lib/watch")(file, opts.output, "watch_browser", theme)
-      : require("./lib/watch")(file, opts.output, "watch_write", theme);
-  });
-
-program.parse(process.argv);
+module.exports = parse;

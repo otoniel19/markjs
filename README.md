@@ -13,7 +13,7 @@
 - parse markdown to html
 
 ```sh
- md-parser parse -i <inputFile> -o <outputFile>
+ md-parser parse <inputFile> -o <outputFile>
 ```
 
 - open parsed markdown preview in browser

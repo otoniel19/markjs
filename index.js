@@ -11,13 +11,13 @@ program.version(
 );
 
 program
-  .command("parse")
-  .option("-i,--input <file>", "the markdown file to parse")
+  .command("parse <file>")
   .option("-o,--output <file>", "the file to write parsed markdown")
   .description("parse markdown to html")
   .usage("-i <file> -o <file>")
-  .action((opts) => {
-    require("./lib/parser")(opts);
+  .action((file, opts) => {
+    var options = Object.assign(opts, { input: file });
+    require("./lib/parser")(options);
   });
 
 program

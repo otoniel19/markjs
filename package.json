@@ -1,5 +1,5 @@
 {
-  "name": "markjs",
+  "name": "@otoniel19/markjs",
   "description": "markjs is a module for parsing markdown to html",
   "version": "1.0.0",
   "main": "index.js",

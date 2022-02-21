@@ -11,7 +11,7 @@ const { spawnSync } = require("child_process");
 //the markdown watcher
 //const watch = require("../lib/watch");
 
-proram.version(
+program.version(
   require("../package.json").version,
   "-v,--version",
   "show md-parser version"

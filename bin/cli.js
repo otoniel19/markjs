@@ -53,7 +53,7 @@ program
   .command("lint <file.md>")
   .description("lint markdown file")
   .action((file) => {
-    spawnSync("yarn", [`markdownlint ${file}`], {
+    spawnSync("npx", [`markdownlint ${file}`], {
       shell: true,
       stdio: "inherit"
     });

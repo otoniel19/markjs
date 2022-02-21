@@ -33,8 +33,6 @@
 
 # how to lint markdown
 
-> :warning: this requires yarn
-
 ```sh
  md-parser lint <file.md>
 ```

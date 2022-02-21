@@ -11,6 +11,12 @@ const { spawnSync } = require("child_process");
 //the markdown watcher
 //const watch = require("../lib/watch");
 
+proram.version(
+  require("../package.json").version,
+  "-v,--version",
+  "show md-parser version"
+);
+
 program
   .command("parse <file>")
   .description("parse the markdown to html")
@@ -41,7 +47,7 @@ program
 
 program
   .command("watch <file>")
-  .description("watch a filw and output the content to a file")
+  .description("watch a file and output the content to a file")
   .option("-t,--theme <themeName>", "the theme to use in markdown css", "dark")
   .requiredOption("-o,--output <file>")
   .action(async (fileName, opts) => {
@@ -50,7 +56,7 @@ program
   });
 
 program
-  .command("lint <file.md>")
+  .command("lint <file>")
   .description("lint markdown file")
   .action((file) => {
     spawnSync("npx", [`markdownlint ${file}`], {

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>index.html</title>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/atom-one-dark.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown-dark.min.css"
+		/>
+	</head>
+
+	<body class="markdown-body">
+		<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"></script>
+
+		<h1 id="markjs">markjs</h1>
+		<ul>
+			<li>usage for the cli</li>
+			<li>install</li>
+		</ul>
+		<pre><code class="language-sh"> npm install -g @otoniel19/markjs
+</code></pre>
+		<h1 id="how-to-parse-markdown">how to parse markdown</h1>
+		<ul>
+			<li>the theme can be &#39;light&#39; or &#39;dark&#39;</li>
+		</ul>
+		<pre><code class="language-sh"> markjs parse &lt;fileName.md&gt; --theme dark --output &lt;fileName&gt;
+</code></pre>
+		<h1 id="how-to-open-markdown-preview">how to open markdown preview</h1>
+		<pre><code class="language-sh"> markjs open &lt;fileName.md&gt; --theme dark
+</code></pre>
+		<ul>
+			<li>
+				open the preview <a href="http://localhost:5000">server</a> in browser
+			</li>
+		</ul>
+		<h1 id="how-to-watch-markdown">how to watch markdown</h1>
+		<ul>
+			<li>the watch mode watch markdown changes and write to a file</li>
+		</ul>
+		<pre><code class="language-sh"> markjs watch &lt;fileName.md&gt; -o &lt;output&gt; --theme dark
+</code></pre>
+		<h1 id="how-to-lint-markdown">how to lint markdown</h1>
+		<pre><code class="language-sh"> markjs lint &lt;file.md&gt;
+</code></pre>
+		<h1 id="nodejs-usage">node.js usage</h1>
+		<pre><code class="language-js">const markjs = require(&quot;@otoniel19/markjs&quot;);
+markjs(file, theme).then((res) =&gt; {
+  console.log(res);
+});
+</code></pre>
+		<blockquote>
+			<p>
+				thank you for using this <br />
+				See you next time <strong>👋</strong>
+			</p>
+		</blockquote>
+		<h2 id="made-by-otoniel19-with-hearts">
+			made by otoniel19 with <strong>♥️</strong>
+		</h2>
+
+		<script>
+			hljs.highlightAll();
+		</script>
+	</body>
+</html>

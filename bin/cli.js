@@ -6,17 +6,15 @@ const logger = require("@otoniel19/logger");
 //the markdown parser
 const parser = require("../lib/parser");
 const { spawnSync } = require("child_process");
-//the markdown open
-//const open = require("../lib/open");
-//the markdown watcher
-//const watch = require("../lib/watch");
 
+//version of markjs
 program.version(
   require("../package.json").version,
   "-v,--version",
   "show markjs version"
 );
 
+//the command to parse markdown to html
 program
   .command("parse <file>")
   .description("parse the markdown to html")
@@ -31,11 +29,14 @@ program
   )
   .action(async (fileName, opts) => {
     logger.info(`parsing markdown...`);
+    //use the parser to parse content
     const parseContent = await parser(fileName, opts);
+    //write the parsed content in file
     fs.writeFileSync(opts.output, `${parseContent}`);
     logger.info(`markdown parsed....`);
   });
 
+//the command to open markdown preview
 program
   .command("open <file>")
   .option("-t,--theme <themeName>", "the theme for markdown css", "dark")
@@ -45,6 +46,7 @@ program
     await open(fileName, opts.theme);
   });
 
+//the command to watch markdown
 program
   .command("watch <file>")
   .description("watch a file and output the content to a file")
@@ -55,11 +57,12 @@ program
     await watch(fileName, opts);
   });
 
+//the command to lint markdown file
 program
   .command("lint <file>")
   .description("lint markdown file")
   .action((file) => {
-    spawnSync("npx", [`markdownlint ${file}`], {
+    spawnSync(`npx`, [`markdownlint-cli2 ${file}`], {
       shell: true,
       stdio: "inherit"
     });

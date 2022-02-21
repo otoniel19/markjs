@@ -27,6 +27,6 @@
     "@types/node-emoji": "^1.8.1",
     "@types/open": "^6.2.1",
     "@types/prettier": "^2.4.4",
-    "markdownlint-cli": "^0.31.1"
+    "markdownlint-cli2": "^0.4.0"
   }
 }

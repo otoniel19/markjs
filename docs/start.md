@@ -1,10 +1,10 @@
-# md-parser
+# markjs
 
 - usage for the cli
 - install
 
 ```sh
- yarn global add github://otoniel19/md-parser
+ npm install -g @otoniel19/markjs
 ```
 
 # how to parse markdown
@@ -12,13 +12,13 @@
 - the theme can be 'light' or 'dark'
 
 ```sh
- md-parser parse <fileName.md> --theme dark --output <fileName>
+ markjs parse <fileName.md> --theme dark --output <fileName>
 ```
 
 # how to open markdown preview
 
 ```sh
- md-parser open <fileName.md> --theme dark
+ markjs open <fileName.md> --theme dark
 ```
 
 - open the preview [server](http://localhost:5000) in browser
@@ -28,20 +28,20 @@
 - the watch mode watch markdown changes and write to a file
 
 ```sh
- md-parser watch <fileName.md> -o <output> --theme dark
+ markjs watch <fileName.md> -o <output> --theme dark
 ```
 
 # how to lint markdown
 
 ```sh
- md-parser lint <file.md>
+ markjs lint <file.md>
 ```
 
 # node.js usage
 
 ```js
-const mdParser = require("@otoniel19/md- parser");
-mdParser(file, theme).then((res) => {
+const markjs = require("@otoniel19/markjs");
+markjs(file, theme).then((res) => {
   console.log(res);
 });
 ```

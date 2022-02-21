@@ -1,4 +1,4 @@
-# md-parser
+# markjs
 
 > a cli for easy parsing markdown to html and preview markdown
 

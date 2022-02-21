@@ -14,7 +14,7 @@ const { spawnSync } = require("child_process");
 program.version(
   require("../package.json").version,
   "-v,--version",
-  "show md-parser version"
+  "show markjs version"
 );
 
 program

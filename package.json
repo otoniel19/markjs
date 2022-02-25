@@ -5,12 +5,13 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@otoniel19/logger": "^1.0.2",
+    "chalk": "4.1.2",
     "commander": "^9.0.0",
     "express": "^4.17.3",
     "marked": "^4.0.12",
     "node-emoji": "^1.11.0",
     "open": "^8.4.0",
+    "ora": "^5.4.1",
     "prettier": "^2.5.1"
   },
   "bin": {

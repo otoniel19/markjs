@@ -2,7 +2,7 @@
 
 const { program } = require("commander");
 const fs = require("fs");
-const logger = require("@otoniel19/logger");
+const log = require("../lib/utils").logger();
 //the markdown parser
 const parser = require("../lib/parser");
 const { spawnSync } = require("child_process");
@@ -23,17 +23,19 @@ program
     "the theme to use type 'dark' | 'light'",
     "dark"
   )
-  .requiredOption(
+  .option(
     "-o,--output <outputFile>",
-    "the file to write the parsed markdown"
+    "the file to write the parsed markdown",
+    "default"
   )
   .action(async (fileName, opts) => {
-    logger.info(`parsing markdown...`);
+    opts.output == "default" ? (opts.output = `${fileName}.html`) : opts.output;
+    log.info(`starting markdown parse...`);
     //use the parser to parse content
     const parseContent = await parser(fileName, opts);
     //write the parsed content in file
     fs.writeFileSync(opts.output, `${parseContent}`);
-    logger.info(`markdown parsed....`);
+    log.info(`markdown parsed`);
   });
 
 //the command to open markdown preview
@@ -51,8 +53,9 @@ program
   .command("watch <file>")
   .description("watch a file and output the content to a file")
   .option("-t,--theme <themeName>", "the theme to use in markdown css", "dark")
-  .requiredOption("-o,--output <file>")
+  .option("-o,--output <file>", "file to output", "default")
   .action(async (fileName, opts) => {
+    opts.output == "default" ? (opts.output = `${fileName}.html`) : opts.output;
     const watch = require("../lib/watch");
     await watch(fileName, opts);
   });

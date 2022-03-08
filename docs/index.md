@@ -46,6 +46,14 @@ markjs(file, theme).then((res) => {
 });
 ```
 
+# open the manual
+
+- the manual has more explanations about the commands
+
+```sh
+ > markjs manual
+```
+
 > thank you for using this
 > <br> See you next time **:wave:**
 

@@ -1,0 +1,59 @@
+.TH MARKJS "1" 
+
+.SH NAME
+markjs 
+
+
+
+.SH DESCRIPTION 
+ markjs is a cli for parse markdown to html
+ writen in JavaScript
+
+.SH COMMANDS
+ markjs have 4 commands the methods is: 
+ parse,open,watch and lint
+
+.SH USAGE
+ the parse command
+ this command parse markdown to html
+ > markjs parse file.md -o output.file
+ there is a option called -t,--theme you can choose dark or light
+ > markjs parse file.md -o output.file -t dark
+.PP
+ the open command
+ this command open markdown preview server
+ this command dont need a output file
+ > markjs open file.md 
+ this command also has the option -t,--theme
+.PP
+ the watch command
+ this command watches the file and writes the content to the output file
+ > markjs watch file.md -o file.output
+ this command also has the -t,--theme option
+.PP
+ the lint command
+ this command lint the markdown using markdownlint-cli2
+ > markjs lint file.md
+ this command does not have any options
+
+.SH NODE.JS USAGE
+ the node.js usage have one method the markjs.parse()
+
+ > const markjs = require("@otoniel19/markjs")
+ > markjs("file.md")
+
+.SH HISTORY
+ I was standing there thinking what if I     created a cli that converted markdown to html
+
+ then came md-parser
+ so I renamed it to markjs
+ I like that name
+
+ mark from markdown
+ js for JavaScript
+
+ so it looks like this
+
+.SH BYE
+ thank you for using markjs!
+ I will continue to improve markjs

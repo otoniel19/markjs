@@ -2,10 +2,12 @@
 
 const { program } = require("commander");
 const fs = require("fs");
-const log = require("../lib/utils").logger();
+const utils = require("../lib/utils");
 //the markdown parser
 const parser = require("../lib/parser");
 const { spawnSync } = require("child_process");
+
+const log = utils.logger();
 
 //version of markjs
 program.version(
@@ -65,10 +67,14 @@ program
   .command("lint <file>")
   .description("lint markdown file")
   .action((file) => {
-    spawnSync(`npx`, [`markdownlint-cli2 ${file}`], {
-      shell: true,
-      stdio: "inherit"
-    });
+    utils.shell("npx markdownlint-cli2 " + file);
+  });
+
+program
+  .command("manual")
+  .description("show the markjs man")
+  .action(() => {
+    utils.shell(`man man/markjs.1`);
   });
 
 program.parse(process.argv);

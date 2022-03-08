@@ -8,10 +8,10 @@
     "chalk": "4.1.2",
     "commander": "^9.0.0",
     "express": "^4.17.3",
-    "jsdom": "^19.0.0",
     "open": "^8.4.0",
     "prettier": "^2.5.1",
-    "showdown": "^2.0.2"
+    "showdown": "^2.0.2",
+    "@otoniel19/term-repl": "github:otoniel19/term-repl"
   },
   "bin": {
     "markjs": "./bin/cli.js"
@@ -27,5 +27,6 @@
     "@types/prettier": "^2.4.4",
     "@types/showdown": "^1.9.4",
     "markdownlint-cli2": "^0.4.0"
-  }
+  },
+  "man": "./man/markjs.1"
 }
